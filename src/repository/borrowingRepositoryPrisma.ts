@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Borrowing, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient(); 
 
@@ -47,7 +47,7 @@ export function getBorrowingNotReturned() {
     });
 }
 
-export function addBorrowing(newBorrowing: any) {
+export function addBorrowing(newBorrowing: Borrowing) {
     return prisma.borrowing.create({
         data: newBorrowing,
         include: {

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Member, PrismaClient } from "@prisma/client";
 import * as memberRepository from "../repository/memberRepositoryPrisma";
 
 export function getAllMembers() {
@@ -17,6 +17,6 @@ export function getMemberByNames(name: string) {
     return memberRepository.getMemberByNames(name);
 }
 
-export function addMmember(newMember: any) {
+export function addMmember(newMember: Member) {
     return memberRepository.addMmember(newMember);
 }

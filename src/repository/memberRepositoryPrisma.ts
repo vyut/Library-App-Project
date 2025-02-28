@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { Member, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -33,7 +33,7 @@ export function getMemberByNames(name: string) {
     });
 }
 
-export function addMmember(newMember: any) {
+export function addMmember(newMember: Member) {
     return prisma.member.create({
         data: newMember
     });

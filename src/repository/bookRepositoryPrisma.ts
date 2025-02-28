@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Book, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -40,7 +40,7 @@ export function getBookByISBN(isbn: string) {
     });
 }
 
-export function addBook(newBook : any) {
+export function addBook(newBook: Omit<Book, 'id'>) {
     return prisma.book.create({
         data: newBook,
     });
