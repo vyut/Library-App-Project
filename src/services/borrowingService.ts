@@ -9,12 +9,12 @@ export function getBorrowingById(id: number) {
     return borrowingRepository.getBorrowingById(id);
 }
 
-export function getBooksByDueDate(dueDate: Date) {
-    return borrowingRepository.getBooksByDueDate(dueDate);
+export function getBorrowingByDueDate(dueDate: Date) {
+    return borrowingRepository.getBorrowingByDueDate(dueDate);
 }
 
-export function getBooksNotReturned() {
-    return borrowingRepository.getBooksNotReturned();
+export function getBorrowingNotReturned() {
+    return borrowingRepository.getBorrowingNotReturned();
 }
 
 export function addBorrowing(newBorrowing: any) {

@@ -23,7 +23,7 @@ export function getBorrowingById(id: number) {
     });
 }
 
-export function getBooksByDueDate(dueDate: Date) {
+export function getBorrowingByDueDate(dueDate: Date) {
     return prisma.borrowing.findMany({
         where: {
             dueDate: dueDate
@@ -35,7 +35,7 @@ export function getBooksByDueDate(dueDate: Date) {
     });
 }
 
-export function getBooksNotReturned() {
+export function getBorrowingNotReturned() {
     return prisma.borrowing.findMany({
         where: {
             returnedAt: null

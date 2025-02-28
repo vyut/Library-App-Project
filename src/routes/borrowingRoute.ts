@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllBorrowings, getBorrowingById, getBooksByDueDate, getBooksNotReturned, addBorrowing } from '../services/borrowingService';
+import { getAllBorrowings, getBorrowingById, getBorrowingByDueDate, getBorrowingNotReturned, addBorrowing } from '../services/borrowingService';
 
 const router = express.Router();
 
@@ -21,12 +21,12 @@ router.get('/:id', async (req, res) => {
 
 router.get('/due/:dueDate', async (req, res) => {
     const dueDate = new Date(req.params.dueDate);
-    const borrowing = await getBooksByDueDate(dueDate);
+    const borrowing = await getBorrowingByDueDate(dueDate);
     res.json(borrowing);
 });
 
 router.get('/notreturned', async (req, res) => {
-    const borrowing = await getBooksNotReturned();
+    const borrowing = await getBorrowingNotReturned();
     res.json(borrowing);
 });
 
