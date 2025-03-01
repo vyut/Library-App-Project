@@ -72,13 +72,14 @@ export async function seedBooks() {
     console.log('Start seeding books...');
     for (const book of books) {
         if (book.authorId) {
-            try {
-                await prisma.book.create({
-                    data: book
-                });
-            } catch(error) {
-                console.error(`Failed to create book "${book.title}":`, error);
-            }
+            await prisma.book.create({         
+                data: {
+                    title: book.title,
+                    isbn: book.isbn,
+                    category: book.category,
+                    authorId: book.authorId
+                }
+            });
         } else {
             console.warn(`Skipping book "${book.title}" due to missing authorId`);
         }

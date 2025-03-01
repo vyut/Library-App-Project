@@ -39,7 +39,13 @@ export async function seedMembers() {
     console.log('Start seeding members...');
     for (const member of members) {
         await prisma.member.create({
-            data: member
+            data: 
+            {
+                memberId: member.memberId,
+                firstName: member.firstName,
+                lastName: member.lastName,
+                phone: member.phone
+            }
         });
     }
     console.log('Seeding members completed!');

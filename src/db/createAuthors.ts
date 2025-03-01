@@ -34,7 +34,11 @@ export async function seedAuthors() {
     console.log('Start seeding authors...');
     for (const author of authors) {
         await prisma.author.create({
-            data: author
+            data: {
+                firstName: author.firstName,
+                lastName: author.lastName,
+                affiliation: author.affiliation
+            }
         });
     }
     console.log('Seeding authors completed.');

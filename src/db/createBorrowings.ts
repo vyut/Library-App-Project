@@ -47,7 +47,14 @@ export async function seedBorrowings() {
     console.log('Start seeding borrowings...');
     for (const borrowing of borrowings) {
         await prisma.borrowing.create({
-            data: borrowing
+            data: 
+            {
+                bookId: borrowing.bookId,
+                memberId: borrowing.memberId,
+                borrowedAt: borrowing.borrowedAt,
+                dueDate: borrowing.dueDate,
+                returnedAt: borrowing.returnedAt
+            }
         });
     }
     console.log('Seeding borrowings completed!');
