@@ -1,16 +1,17 @@
 import express from 'express';
-import { getAllAuthors, getAuthorById, createAuthor } from '../services/authorService';
+import * as service from '../services/authorService';
+import type { Author } from '../models/author';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const authors = await getAllAuthors();
+    const authors = await service.getAllAuthors();
     res.json(authors);
 });
 
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const author = await getAuthorById(id);
+    const author = await service.getAuthorById(id);
     if (author) {
         res.json(author);
     } else {
@@ -19,7 +20,7 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    const newAuthor = await createAuthor(req.body);
+    const newAuthor = await service.createAuthor(req.body);
     res.status(201).json(newAuthor);
 });
 

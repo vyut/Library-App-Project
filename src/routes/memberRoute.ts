@@ -1,43 +1,24 @@
 import express from 'express';
-import { getAllMembers, getMemberById, getMemberByMemberID, getMemberByNames, addMmember } from '../services/memberService';
-
-// export function getAllMembers() {
-//     return memberRepository.getAllMembers();
-// }
-
-// export function getMemberById(id: number) {
-//     return memberRepository.getMemberById(id);
-// }
-
-// export function getMemberByMemberID(memberId: string) {
-//     return memberRepository.getMemberByMemberID(memberId);
-// }
-
-// export function getMemberByNames(name: string) {
-//     return memberRepository.getMemberByNames(name);
-// }
-
-// export function addMmember(newMember: any) {
-//     return memberRepository.addMmember(newMember);
-// }
+import * as service from '../services/memberService';
+import type { Member } from '../models/member';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
     if (req.query.name) {
         const name = req.query.name as string;
-        const members = await getMemberByNames(name);
+        const members = await service.getMemberByNames(name);
         res.json(members);
     }
     else {
-        const members = await getAllMembers();
+        const members = await service.getAllMembers();
         res.json(members);
     }
 });
 
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const member = await getMemberById(id);
+    const member = await service.getMemberById(id);
     if (member) {
         res.json(member);
     } else {
@@ -47,7 +28,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/memberid/:memberid', async (req, res) => {
     const memberId = req.params.memberid;
-    const member = await getMemberByMemberID(memberId);
+    const member = await service.getMemberByMemberID(memberId);
     if (member) {
         res.json(member);
     } else {
@@ -57,13 +38,12 @@ router.get('/memberid/:memberid', async (req, res) => {
 
 router.get('/search', async (req, res) => {
     const name = req.query.name as string;
-    const members = await getMemberByNames(name);
+    const members = await service.getMemberByNames(name);
     res.json(members);
 });
 
 router.post('/', async (req, res) => {
-    const newMember = req.body;
-    const addedMember = await addMmember(newMember);
+    const addedMember = await service.addMmember(req.body);
     res.status(201).json(addedMember);
 });
 

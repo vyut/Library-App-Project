@@ -5,3 +5,8 @@ export interface Book {
     category: string;
     authorId: number;
 }
+
+export interface PageBook {
+    count: number;
+    books: Book[];
+}

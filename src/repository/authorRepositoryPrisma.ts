@@ -1,4 +1,5 @@
-import { Author, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
+import { Author } from '../models/author';
 
 const prisma = new PrismaClient();
 

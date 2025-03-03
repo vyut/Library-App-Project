@@ -1,16 +1,17 @@
 import express from 'express';
-import { getAllBorrowings, getBorrowingById, getBorrowingByDueDate, getBorrowingNotReturned, addBorrowing } from '../services/borrowingService';
+import * as service from '../services/borrowingService';
+import type { Borrowing } from '../models/borrowing';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const borrowings = await getAllBorrowings();
+    const borrowings = await service.getAllBorrowings();
     res.json(borrowings);
 });
 
 router.get('/:id', async (req, res) => {
     const id = parseInt(req.params.id);
-    const borrowing = await getBorrowingById(id);
+    const borrowing = await service.getBorrowingById(id);
     if (borrowing) {
         res.json(borrowing);
     } else {
@@ -21,18 +22,18 @@ router.get('/:id', async (req, res) => {
 
 router.get('/due/:dueDate', async (req, res) => {
     const dueDate = new Date(req.params.dueDate);
-    const borrowing = await getBorrowingByDueDate(dueDate);
+    const borrowing = await service.getBorrowingByDueDate(dueDate);
     res.json(borrowing);
 });
 
 router.get('/notreturned', async (req, res) => {
-    const borrowing = await getBorrowingNotReturned();
+    const borrowing = await service.getBorrowingNotReturned();
     res.json(borrowing);
 });
 
 router.post('/', async (req, res) => {
     const newBorrowing = req.body;
-    const result = await addBorrowing(newBorrowing);
+    const result = await service.addBorrowing(newBorrowing);
     res.json(result);
 });
 

@@ -1,4 +1,5 @@
-import { Borrowing, PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import { Borrowing } from '../models/borrowing';
 import * as borrowingRepository from '../repository/borrowingRepositoryPrisma';
 
 export function getAllBorrowings() {
