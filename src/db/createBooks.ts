@@ -1,3 +1,4 @@
+import { Book } from './../../node_modules/.prisma/client/index.d';
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
